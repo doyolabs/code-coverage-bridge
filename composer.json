@@ -11,6 +11,7 @@
     ],
     "extra": {
         "branch-alias": {
+            "dev-develop": "2.0-dev",
             "dev-master": "1.0-dev"
         }
     },
@@ -28,7 +29,7 @@
         }
     },
     "replace": {
-        "doyo/code-coverage-bridge": "^1.0@dev"
+        "doyo/code-coverage-bridge": "self.version"
     },
     "require": {
         "php": ">=7.0",
