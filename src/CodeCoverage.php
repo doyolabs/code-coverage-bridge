@@ -7,6 +7,7 @@ use Doyo\Bridge\CodeCoverage\Console\ConsoleIO;
 use Doyo\Bridge\CodeCoverage\Environment\RuntimeInterface;
 use Doyo\Bridge\CodeCoverage\Event\CoverageEvent;
 use Doyo\Symfony\Bridge\EventDispatcher\EventDispatcher;
+use SebastianBergmann\CodeCoverage\Report\Xml\Coverage;
 
 /**
  * A main code coverage actions that contain main processor
@@ -68,12 +69,24 @@ class CodeCoverage extends EventDispatcher
     public function complete()
     {
         $coverageEvent = $this->coverageEvent;
+        $consoleIO = $coverageEvent->getConsoleIO();
 
         if($coverageEvent->canCollectCodeCoverage()){
             $coverageEvent->getProcessor()->complete();
             $this->dispatch($coverageEvent, CoverageEvent::complete);
+            $this->dispatch($coverageEvent, CoverageEvent::report);
+        }else{
+            $consoleIO->coverageError('Can not create coverage report. No code coverage driver available');
         }
 
         return $coverageEvent;
+    }
+
+    public function setResult(int $result)
+    {
+        $coverageEvent = $this->coverageEvent;
+        if($coverageEvent->canCollectCodeCoverage()){
+            $coverageEvent->getProcessor()->getCurrentTestCase()->setResult($result);
+        }
     }
 }
