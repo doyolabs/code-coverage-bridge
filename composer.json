@@ -29,7 +29,7 @@
         }
     },
     "replace": {
-        "doyo/code-coverage-bridge": "1.*"
+        "doyo/code-coverage-bridge": "self.version"
     },
     "require": {
         "php": ">=7.0",
