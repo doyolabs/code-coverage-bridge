@@ -7,7 +7,6 @@ use Doyo\Bridge\CodeCoverage\Console\ConsoleIO;
 use Doyo\Bridge\CodeCoverage\Environment\RuntimeInterface;
 use Doyo\Bridge\CodeCoverage\Event\CoverageEvent;
 use Doyo\Symfony\Bridge\EventDispatcher\EventDispatcher;
-use SebastianBergmann\CodeCoverage\Report\Xml\Coverage;
 
 /**
  * A main code coverage actions that contain main processor
